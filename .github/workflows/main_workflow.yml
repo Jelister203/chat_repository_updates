@@ -12,6 +12,12 @@ jobs:
     name: Send telegram message
     runs-on: ubuntu-latest
     steps:
+      - name: Get Changes
+        id: changes
+        run: |
+          CHANGES=$(git log --pretty=format:"%h - %s (%an)" ${{ github.event.before }}..${{ github.sha }})
+          echo "::set-output name=changes::$CHANGES"
+
       - uses: actions/checkout@master
       - name: send custom message with message
         uses: appleboy/telegram-action@master
@@ -20,7 +26,9 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message:
             Workflow ${{ github.workflow }}
-            Репозиторий ${{ github.repository }}
+
+            Репозиторий ${{ github.event.repository.full_name }}
+
             Автор ${{ github.actor }}
-            Изменения ${{github.event.push.commits }}.
-            Изменения ${{github.event.push }}.
+
+            Изменения ${{steps.changes.outputs.changes }}.
