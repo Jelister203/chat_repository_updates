@@ -18,7 +18,7 @@ jobs:
       - name: Get Changes
         id: changes
         run: |
-          CHANGES=$(git diff HEAD~1)
+          CHANGES=$(git diff HEAD~1 --)
           echo "::set-output name=changes::$CHANGES"
 
       - uses: actions/checkout@master
@@ -34,4 +34,4 @@ jobs:
 
             Автор ${{ github.actor }}
 
-            Изменения ${{steps.changes.outputs.changes }}.
+            Список изменений ${{steps.changes.outputs.changes }}.
