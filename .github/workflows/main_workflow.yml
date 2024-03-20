@@ -1,0 +1,21 @@
+name: Main workflow
+
+on:
+  push:
+    paths-ignore:
+      - '**/README.md'
+env:
+    VAR: |
+        run echo hi
+jobs:
+  telegram_message:
+    name: Send telegram message
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: send custom message with message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: Workflow:${{ github.workflow }} repa:${{ github.repository }} actor:${{ github.actor }} var:${{ env.VAR }}com:${{github.event.commits}}
