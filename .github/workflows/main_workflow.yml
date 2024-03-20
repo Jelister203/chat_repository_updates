@@ -24,7 +24,7 @@ jobs:
       - name: Get Changes
         id: changes
         run: |
-          CHANGES=$(git diff ${{ steps.get_commit.outputs.previous_commit }}~1 -- .) 
+          CHANGES=$(git diff ${{ steps.get_commit.outputs.previous_commit }}^ -- .) 
           echo "::set-output name=changes::$CHANGES"
 
       - uses: actions/checkout@master
