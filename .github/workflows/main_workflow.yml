@@ -18,9 +18,8 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: Workflow:${{ github.workflow }} \n
-            Репозиторий:. ${{ github.repository }} \n
-            Ветка:. ${{ github.repository.branch }}
-            Кто запушил:. ${{ github.actor }} \n
-
-            Изменения:. ${{github.event.commits.commits.added}}
+          message:
+            Workflow ${{ github.workflow }}
+            Репозиторий ${{ github.repository }}
+            Автор ${{ github.actor }}
+            Изменения ${{github.event.head_commit}}
