@@ -26,8 +26,8 @@ jobs:
       - name: Get Changes
         id: changes
         run: |
-          CHANGES=$(git diff HEAD~1 -- .) 
-          echo "::set-output name=changes::$CHANGES"
+          CHANGES=$(git diff HEAD~1 -- . > changes.txt) 
+          echo "::set-output name=changes::$(cat changes.txt)"
 
       - uses: actions/checkout@master
       - name: send custom message with message
@@ -42,4 +42,4 @@ jobs:
 
             Автор ${{ github.actor }}
 
-            Список изменений ${{steps.changes.outputs.changes[1] }}.
+            Список изменений ${{steps.changes.outputs.changes }}.
