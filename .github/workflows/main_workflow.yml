@@ -15,10 +15,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Get previous commit
+        id: get_commit
+        run: |
+          PREVIOUS_COMMIT=$(git log -1 --pretty=format:"%h")
+          echo "::set-output name=previous_commit::$PREVIOUS_COMMIT"
+
       - name: Get Changes
         id: changes
         run: |
-          CHANGES=$(git diff HEAD~1 --)
+          CHANGES=$(git diff ${{ steps.get_commit.outputs.previous_commit }}) 
           echo "::set-output name=changes::$CHANGES"
 
       - uses: actions/checkout@master
