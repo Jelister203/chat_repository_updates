@@ -42,4 +42,8 @@ jobs:
 
             Автор ${{ github.actor }}
 
+            
+            $(git diff HEAD~1 -- .)
+
+
             Список изменений ${{steps.changes.outputs.changes }}.
