@@ -22,4 +22,5 @@ jobs:
             Workflow ${{ github.workflow }}
             Репозиторий ${{ github.repository }}
             Автор ${{ github.actor }}
-            Изменения ${{github.event.head_commit}}
+            Изменения ${{github.event.push.commits }}.
+            Изменения ${{github.event.push }}.
