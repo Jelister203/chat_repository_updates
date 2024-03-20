@@ -18,7 +18,7 @@ jobs:
       - name: Get Changes
         id: changes
         run: |
-          CHANGES=$(git log --pretty=format:"%h - %s (%an)" ${{ github.event.before }}..${{ github.sha }})
+          CHANGES=$(git diff HEAD~1)
           echo "::set-output name=changes::$CHANGES"
 
       - uses: actions/checkout@master
