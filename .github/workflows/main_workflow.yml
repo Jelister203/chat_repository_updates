@@ -42,4 +42,4 @@ jobs:
 
             Автор ${{ github.actor }}
 
-            Список изменений ${{steps.changes.outputs.changes }}.
+            Список изменений ${{steps.changes.outcome.changes }}.
