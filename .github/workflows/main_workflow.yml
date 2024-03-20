@@ -14,7 +14,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+        with:
+            fetch-depth: 5
+        
       - name: Get previous commit
         id: get_commit
         run: |
@@ -24,7 +26,7 @@ jobs:
       - name: Get Changes
         id: changes
         run: |
-          CHANGES=$(git diff ${{ steps.get_commit.outputs.previous_commit }}^ -- .) 
+          CHANGES=$(git diff HEAD~1 -- .) 
           echo "::set-output name=changes::$CHANGES"
 
       - uses: actions/checkout@master
