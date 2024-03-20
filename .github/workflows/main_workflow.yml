@@ -36,7 +36,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message:
-            Workflow ${{ github.workflow }}
+            ${{ github.workflow }}
 
             Репозиторий ${{ github.event.repository.full_name }}
 
