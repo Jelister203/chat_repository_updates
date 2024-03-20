@@ -12,6 +12,9 @@ jobs:
     name: Send telegram message
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Get Changes
         id: changes
         run: |
